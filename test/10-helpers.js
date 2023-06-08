@@ -22,7 +22,7 @@ const helpers       = require('../helpers.js');
 //* Constants *
 //*************
 
-const options = yaml.safeLoad(fs.readFileSync('./test/secrets.yml', 'utf8'));
+const options = yaml.load(fs.readFileSync('./test/secrets.yml', 'utf8'));
 //console.log(options);
 index.setOptions(options);
 

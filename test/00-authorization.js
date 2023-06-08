@@ -21,7 +21,7 @@ const DexcomJS      = require('../index.js');
 //* Constants *
 //*************
 
-const options = yaml.safeLoad(fs.readFileSync('./test/secrets.yml', 'utf8'));
+const options = yaml.load(fs.readFileSync('./test/secrets.yml', 'utf8'));
 //console.log(options);
 DexcomJS.setOptions(options);
 
