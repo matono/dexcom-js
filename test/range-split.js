@@ -28,7 +28,7 @@ DexcomJS.setOptions(options);
 
 
 test('Verify we can obtain data range statistics for SandboxUser2 followd by last weeks of data', async function (t) {
-  const oauthTokens = await DexcomJS.getSandboxAuthenticationToken('authcode2');
+  const oauthTokens = await DexcomJS.getSandboxAuthenticationToken('SandboxUser2');
   const results     = await DexcomJS.getDataRange(oauthTokens);
 
   t.ok('dataRange'    in results,           'results contains dataRange');
@@ -36,7 +36,7 @@ test('Verify we can obtain data range statistics for SandboxUser2 followd by las
   t.ok('egvs'         in results.dataRange, 'results.dataRange contains egvs');
   t.ok('events'       in results.dataRange, 'results.dataRange contains events');
 
-  console.log(util.inspect(results,false,4));
+  //console.log(util.inspect(results,false,4));
 
   // Since the authorization tokens have not expired, we do not expect any new tokens to be returned.
   t.ok(!('oauthTokens' in results), 'results does not contain oauthTokens');
@@ -55,14 +55,14 @@ test('Verify we can obtain data range statistics for SandboxUser2 followd by las
 
   const groupedByDay = DexcomJS.shardEgvsByDay(egvs);
   //console.log(groupedByDay);
-  console.log(Object.keys(groupedByDay));
+  //console.log(Object.keys(groupedByDay));
   t.equal(Object.keys(groupedByDay).length, 8, 'going back a week to midnight prior to last day should give us 8 days of data');
   const daysInEpochMillisec = Object.keys(groupedByDay).map(el => { 
     //console.log(el);
     //console.log(new Date(parseInt(el)));
     return new Date(parseInt(el)).getTime();
   });
-  console.log(daysInEpochMillisec);
+  //console.log(daysInEpochMillisec);
   daysInEpochMillisec.forEach((el, idx) => {
     t.ok(Number.isInteger(el), `el ${idx} is a date integer`);
   });
@@ -74,7 +74,7 @@ test('Verify we can obtain data range statistics for SandboxUser2 followd by las
   const beginData = await DexcomJS.getEstimatedGlucoseValues(oauthTokens, earlyFetchTimes.startTime, earlyFetchTimes.endTime);
   const beginEgvs = beginData.estimatedGlucoseValues.egvs;
   const beginGroupedByDay = DexcomJS.shardEgvsByDay(beginEgvs);
-  console.log(beginGroupedByDay);
+  //console.log(beginGroupedByDay);
   t.equal(Object.keys(beginGroupedByDay).length, 7, 'going a week back to midnight before valid start date gets 7 days of data');
 
 });

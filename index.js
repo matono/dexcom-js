@@ -89,13 +89,7 @@ DexcomJS.getSandboxAuthenticationToken = async function(user) {
   helpers.validateOptions(this.options);
   helpers.validateSandboxAuthcode(user);
 
-  // map over old method (authcode) to new method that uses username as of 4/27/19
   let userId = user;
-  const origTestApiAuthcode = 'authcode';
-  const lastLetter = user.substring(user.length - 1);
-  if (user.includes(origTestApiAuthcode)) {
-    userId = 'SandboxUser' + lastLetter;
-  }
 
   // Issue an HTTP POST to the Dexcom system to obtain the sandbox access token.
   const form = {

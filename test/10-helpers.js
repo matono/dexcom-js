@@ -85,24 +85,26 @@ test('Verify validateOptions()', function (t) {
 });
 
 test('Verify validateSandboxAuthcode()', function (t) {
-  const authcode0 = 'authcode0';
-  const authcode1 = 'authcode1';
-  const authcode2 = 'authcode2';
-  const authcode3 = 'authcode3';
-  const authcode4 = 'authcode4';
-  const authcode5 = 'authcode5';
-  const authcode6 = 'authcode6';
-  const authcode7 = 'authcode7';
+  const sandboxUser0 = 'SandboxUser0';
+  const sandboxUser1 = 'SandboxUser1';
+  const sandboxUser2 = 'SandboxUser2';
+  const sandboxUser3 = 'SandboxUser3';
+  const sandboxUser4 = 'SandboxUser4';
+  const sandboxUser5 = 'SandboxUser5';
+  const sandboxUser6 = 'SandboxUser6';
+  const sandboxUser7 = 'SandboxUser7';
+  const sandboxUser8 = 'SandboxUser8';
 
-  t.throws(() => {helpers.validateSandboxAuthcode(authcode0);}, 'authcode0 is rejected.');
-  t.throws(() => {helpers.validateSandboxAuthcode(authcode7);}, 'authcode7 is rejected.');
+  t.throws(() => {helpers.validateSandboxAuthcode(sandboxUser0);}, 'SandboxUser0 is rejected.');
+  t.throws(() => {helpers.validateSandboxAuthcode(sandboxUser8);}, 'SandboxUser8 is rejected.');
 
-  t.doesNotThrow(() => {helpers.validateSandboxAuthcode(authcode1);}, 'authcode1 is accepted.');
-  t.doesNotThrow(() => {helpers.validateSandboxAuthcode(authcode2);}, 'authcode2 is accepted.');
-  t.doesNotThrow(() => {helpers.validateSandboxAuthcode(authcode3);}, 'authcode3 is accepted.');
-  t.doesNotThrow(() => {helpers.validateSandboxAuthcode(authcode4);}, 'authcode4 is accepted.');
-  t.doesNotThrow(() => {helpers.validateSandboxAuthcode(authcode5);}, 'authcode5 is accepted.');
-  t.doesNotThrow(() => {helpers.validateSandboxAuthcode(authcode6);}, 'authcode6 is accepted.');
+  t.doesNotThrow(() => {helpers.validateSandboxAuthcode(sandboxUser1);}, 'SandboxUser1 is accepted.');
+  t.doesNotThrow(() => {helpers.validateSandboxAuthcode(sandboxUser2);}, 'SandboxUser2 is accepted.');
+  t.doesNotThrow(() => {helpers.validateSandboxAuthcode(sandboxUser3);}, 'SandboxUser3 is accepted.');
+  t.doesNotThrow(() => {helpers.validateSandboxAuthcode(sandboxUser4);}, 'SandboxUser4 is accepted.');
+  t.doesNotThrow(() => {helpers.validateSandboxAuthcode(sandboxUser5);}, 'SandboxUser5 is accepted.');
+  t.doesNotThrow(() => {helpers.validateSandboxAuthcode(sandboxUser6);}, 'SandboxUser6 is accepted.');
+  t.doesNotThrow(() => {helpers.validateSandboxAuthcode(sandboxUser7);}, 'SandboxUser7 is accepted.');
 
   t.end();
 });
@@ -186,17 +188,17 @@ test('Verify validateOAuthTokens()', function (t) {
 });
 
 test('Verify refreshAccessToken()', async function (t) {
-  const oauthTokens = await index.getSandboxAuthenticationToken('authcode6');
+  const oauthTokens = await index.getSandboxAuthenticationToken('SandboxUser6');
   const result      = await helpers.refreshAccessToken(options, oauthTokens, true);
 
-  console.log(oauthTokens);
-  console.log(result);
+  //console.log(oauthTokens);
+  //console.log(result);
   t.ok('timestamp'        in result, 'result contains timestamp');
   t.ok('dexcomOAuthToken' in result, 'result contains dexcomOAuthToken');
 });
 
 test('Verify refreshAccessToken() with an old token', async function (t) {
-  const oauthTokens = await index.getSandboxAuthenticationToken('authcode5');
+  const oauthTokens = await index.getSandboxAuthenticationToken('SandboxUser5');
 
   // this token appears to work no matter what the user is.   wut....
   oauthTokens.dexcomOAuthToken.refresh_token = 'f1749e8056cfebce02e29e903226dd17';

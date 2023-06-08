@@ -75,18 +75,19 @@ const sandboxAuthCodes = {
   "id":   "/SandboxAuthCode",
   "type": "string",
   "enum": [
-    "authcode1",
-    "authcode2",
-    "authcode3",
-    "authcode4",
-    "authcode5",
-    "authcode6",
+    // "authcode1",
+    // "authcode2",
+    // "authcode3",
+    // "authcode4",
+    // "authcode5",
+    // "authcode6",
     "SandboxUser1",
     "SandboxUser2",
     "SandboxUser3",
     "SandboxUser4",
     "SandboxUser5",
-    "SandboxUser6"
+    "SandboxUser6",
+    "SandboxUser7"
   ]
 };
 
